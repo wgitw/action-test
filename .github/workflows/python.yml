@@ -14,7 +14,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.9
-    - run: pip install -r requirements.txt
+    - run: pip install unittest
     - run: python test.py
     - run: python setup.py build
       env:
