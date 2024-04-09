@@ -1,0 +1,26 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    - run: pip install -r requirements.txt
+    - run: python test.py
+    - run: python setup.py build
+      env:
+        CI: true
+    - uses: actions/upload-artifact@main
+      with:  
+        name: dist-files  
+        path: dist
